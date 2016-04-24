@@ -12,20 +12,20 @@
 
 /************************************************************************/
 /* 
-const char *file£ºÎÄ¼şÃû³Æ
-int line£ºÎÄ¼şĞĞºÅ
-int level£º´íÎó¼¶±ğ
-		0 -- Ã»ÓĞÈÕÖ¾
-		1 -- debug¼¶±ğ
-		2 -- info¼¶±ğ
-		3 -- warning¼¶±ğ
-		4 -- err¼¶±ğ
-int status£º´íÎóÂë
-const char *fmt£º¿É±ä²ÎÊı
+const char *fileï¼šæ–‡ä»¶åç§°
+int lineï¼šæ–‡ä»¶è¡Œå·
+int levelï¼šé”™è¯¯çº§åˆ«
+		0 -- æ²¡æœ‰æ—¥å¿—
+		1 -- debugçº§åˆ«
+		2 -- infoçº§åˆ«
+		3 -- warningçº§åˆ«
+		4 -- errçº§åˆ«
+int statusï¼šé”™è¯¯ç 
+const char *fmtï¼šå¯å˜å‚æ•°
 */
 /************************************************************************/
 
-/*Êµ¼ÊÊ¹ÓÃµÄLevel*/
+/*å®é™…ä½¿ç”¨çš„Level*/
 extern int  LogLevel[5];
 void LR_LOG(const char *file, int line, int level, int status, const char *fmt, ...);
 

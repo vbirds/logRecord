@@ -12,7 +12,7 @@
 #define LR_DEBUG_FILE_	"lrdebug.log"
 #define LR_MAX_STRING_LEN 		10240
 
-/*LevelÀà±ğ*/
+/*Levelç±»åˆ«*/
 #define LR_NO_LOG_LEVEL			0
 #define LR_DEBUG_LEVEL			1
 #define LR_INFO_LEVEL			2
@@ -21,7 +21,7 @@
 
 int  LogLevel[5] = {LR_NO_LOG_LEVEL, LR_DEBUG_LEVEL, LR_INFO_LEVEL, LR_WARNING_LEVEL, LR_ERROR_LEVEL};
 
-/*LevelµÄÃû³Æ*/
+/*Levelçš„åç§°*/
 char LRLevelName[5][10] = {"NOLOG", "DEBUG", "INFO", "WARNING", "ERROR"};
 
 static int LR_Error_GetCurTime(char* strTime)
@@ -66,20 +66,20 @@ static void LR_Error_Core(const char *file, int line, int level, int status, con
     int	 tmpStrLen = 0;
     int  pf = 0;
     
-    /*³õÊ¼»¯*/
+    /*åˆå§‹åŒ–*/
     memset(str, 0, LR_MAX_STRING_LEN);
     memset(tmpStr, 0, 64);
     
-    /*¼ÓÈëLOGÊ±¼ä*/
+    /*åŠ å…¥LOGæ—¶é—´*/
     tmpStrLen = LR_Error_GetCurTime(tmpStr);
     tmpStrLen = sprintf(str, "[%s] ", tmpStr);
     strLen = tmpStrLen;
 
-    /*¼ÓÈëLOGµÈ¼¶*/
+    /*åŠ å…¥LOGç­‰çº§*/
     tmpStrLen = sprintf(str+strLen, "[%s] ", LRLevelName[level]);
     strLen += tmpStrLen;
     
-    /*¼ÓÈëLOG×´Ì¬*/
+    /*åŠ å…¥LOGçŠ¶æ€*/
     if (status != 0) 
     {
         tmpStrLen = sprintf(str+strLen, "[ERRNO is %d] ", status);
@@ -90,29 +90,29 @@ static void LR_Error_Core(const char *file, int line, int level, int status, con
     }
     strLen += tmpStrLen;
 
-    /*¼ÓÈëLOGĞÅÏ¢*/
+    /*åŠ å…¥LOGä¿¡æ¯*/
     tmpStrLen = vsprintf(str+strLen, fmt, args);
     strLen += tmpStrLen;
 
-    /*¼ÓÈëLOG·¢ÉúÎÄ¼ş*/
+    /*åŠ å…¥LOGå‘ç”Ÿæ–‡ä»¶*/
     tmpStrLen = sprintf(str+strLen, " [%s]", file);
     strLen += tmpStrLen;
 
-    /*¼ÓÈëLOG·¢ÉúĞĞÊı*/
+    /*åŠ å…¥LOGå‘ç”Ÿè¡Œæ•°*/
     tmpStrLen = sprintf(str+strLen, " [%d]\n", line);
     strLen += tmpStrLen;
     
-    /*´ò¿ªLOGÎÄ¼ş*/
+    /*æ‰“å¼€LOGæ–‡ä»¶*/
     if(LR_Error_OpenFile(&pf))
 	{
 		return ;
 	}
 	
-    /*Ğ´ÈëLOGÎÄ¼ş*/
+    /*å†™å…¥LOGæ–‡ä»¶*/
     write(pf, str, strLen);
     /*LR_Log_Error_WriteFile(str);*/
     
-    /*¹Ø±ÕÎÄ¼ş*/
+    /*å…³é—­æ–‡ä»¶*/
     close(pf);
     
     return ;
@@ -122,14 +122,14 @@ void LR_LOG(const char *file, int line, int level, int status, const char *fmt, 
 {
     va_list args;
 	
-	/*ÅĞ¶ÏÊÇ·ñĞèÒªĞ´LOG*/
+	/*åˆ¤æ–­æ˜¯å¦éœ€è¦å†™LOG*/
 	/*if(level!=LR_DEBUG_LEVEL && level!=LR_INFO_LEVEL && level!=LR_WARNING_LEVEL && level!=LR_ERROR_LEVEL)*/
 	if(level == LR_NO_LOG_LEVEL)
 	{
 		return ;
 	}
 	
-	/*µ÷ÓÃºËĞÄµÄĞ´LOGº¯Êı*/
+	/*è°ƒç”¨æ ¸å¿ƒçš„å†™LOGå‡½æ•°*/
     va_start(args, fmt);
     LR_Error_Core(file, line, level, status, fmt, args);
     va_end(args);
