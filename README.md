@@ -22,7 +22,7 @@
 
 1. windows先在c盘 建立`lrlog`目录，linux则在用户目录建立`log`文件夹；
 2. 将`logrecord.h`与`logrecord.c`添加至项目，引用头文件`logrecord.h`；
-    ```c
+    ```
     #include "logrecord.h"
     ```
 3.调用 `LR_LOG(参数)`函数
