@@ -25,7 +25,7 @@
     ```
     #include "logrecord.h"
     ```
-3.调用 `LR_LOG(参数)`函数
+3. 调用 `LR_LOG(参数)`函数
 
 #### 测试
 `test.c`为测试程序，结果如下图：
